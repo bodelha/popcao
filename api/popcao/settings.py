@@ -100,7 +100,7 @@ CORS_ORIGIN_WHITELIST = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'teste',
+        'NAME': 'popcao',
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',

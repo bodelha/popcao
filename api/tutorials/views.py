@@ -20,6 +20,18 @@ def services(request):
         return JsonResponse(service_serializer.data, safe=False)
 
 
+@api_view(['GET', 'POST', 'DELETE'])
+def service(request):
+    if request.method =='POST':
+        service_data = JSONParser().parse(request)
+        service_serializer = ServiceSerializer(data=service_data)
+        if service_serializer.is_valid():
+            service_serializer.save()
+            return JsonResponse(service_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        pass
+
 # @api_view(['GET', 'POST', 'DELETE'])
 # def tutorial_list(request):
 #     if request.method == 'GET':
