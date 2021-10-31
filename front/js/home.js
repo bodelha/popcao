@@ -6,13 +6,13 @@ function servicesList(services) {
   let itens = '';
 
   for (let service of services) {;
-    itens += `<li>${service.name_service} - ${small_time.breed}</li>`
+    itens += `<li>${service.name_service} - ${service.small_time}</li>`
   }
 
   list.innerHTML = itens;
 }
 
 getServices().then((data) => {
-  console.log(data.services);
-  servicesList(data.services);
+  console.log(data);
+  servicesList(data);
 });
