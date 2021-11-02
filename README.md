@@ -1,10 +1,10 @@
 ## Pré-requisitos:
-Python 3.6
-npm
-mysql-server
-mysql-client
-git
-ssh (e configurado no github>>settings>>SSH and GPG keys) 
+* Python 3.6
+* npm
+* mysql-server
+* mysql-client
+* git
+* ssh (e configurado no github>>settings>>SSH and GPG keys) 
 
 
 
@@ -41,5 +41,3 @@ Dá pra subir localmente de duas formas:
 * estando dentro da pasta front, apertar o "Go live" no canto inferior direito do VSCode (sobe em http://127.0.0.1:5500/index.html)
 * tambem dentro da pasta front, dar um _npm start_ na linha de comando (sobe em http://127.0.0.1:8081/)
 Nesses endereços é possível ver a aplicação no navegador.
-
-
