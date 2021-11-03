@@ -6,8 +6,8 @@ export async function getServices() {
   return services;
 }
 
-export async function createPet(data) {
-  const response = await fetch(`${BASE_URL_API}/register`, {
+export async function createService(data) {
+  const response = await fetch(`${BASE_URL_API}/service`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

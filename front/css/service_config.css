@@ -1,0 +1,15 @@
+/* @import "gen_style.css";
+
+
+body{
+    display: flex;
+    min-height: 100vh;    
+}
+
+#banner{
+    margin: auto;
+    height: min (40%, 130vh);
+
+    width: min(90%, 112rem);
+}
+ */
