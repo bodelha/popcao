@@ -21,7 +21,12 @@ def services(request):
 
 
 @api_view(['GET', 'POST', 'DELETE'])
-def service(request):
+def service(request, pk=None):
+    print(request, pk)
+    try:
+        service=Service.objects.get(pk=pk)
+    except Service.DoesNotExist:
+        return JsonResponse({'message': 'The service does not exist'}, status=status.HTTP_404_NOT_FOUND) 
     if request.method =='POST':
         service_data = JSONParser().parse(request)
         service_serializer = ServiceSerializer(data=service_data)
@@ -29,6 +34,10 @@ def service(request):
             service_serializer.save()
             return JsonResponse(service_serializer.data, status=status.HTTP_201_CREATED) 
         return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'GET':
+        service_serializer = ServiceSerializer(service)
+        return JsonResponse(service_serializer.data)
+        
     else:
         pass
 
