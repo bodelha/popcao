@@ -20,26 +20,36 @@ def services(request):
         return JsonResponse(service_serializer.data, safe=False)
 
 
-@api_view(['GET', 'POST', 'DELETE'])
+@api_view(['PUT', 'GET', 'POST', 'DELETE'])
 def service(request, pk=None):
-    print(request, pk)
-    try:
-        service=Service.objects.get(pk=pk)
-    except Service.DoesNotExist:
-        return JsonResponse({'message': 'The service does not exist'}, status=status.HTTP_404_NOT_FOUND) 
-    if request.method =='POST':
+    service, created =Service.objects.get_or_create(pk=pk)
+    print(request, pk, '\n', service, created)
+    if not created and request.method =='PUT':
         service_data = JSONParser().parse(request)
         service_serializer = ServiceSerializer(data=service_data)
         if service_serializer.is_valid():
             service_serializer.save()
             return JsonResponse(service_serializer.data, status=status.HTTP_201_CREATED) 
         return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif created and request.method == 'POST':
+        try:
+            service_data = JSONParser().parse(request)
+            service_serializer = ServiceSerializer(data=service_data)
+            if service_serializer.is_valid():
+                service_serializer.update()
+                return JsonResponse(service_serializer.data, status=status.HTTP_202_ACCEPTED)
+            else:
+                return JsonResponse(service_serializer.data, status=status.HTTP_304_NOT_MODIFIED)
+        except ServiceSerializer.errors:
+            return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     elif request.method == 'GET':
         service_serializer = ServiceSerializer(service)
         return JsonResponse(service_serializer.data)
         
-    else:
-        pass
+    elif request. method == 'DELETE':
+        service.delete()
+        return JsonResponse({'message': 'Service was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
 # @api_view(['GET', 'POST', 'DELETE'])
 # def tutorial_list(request):
