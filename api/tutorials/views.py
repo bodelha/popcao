@@ -1,4 +1,5 @@
 import json
+from django.db.models.query import InstanceCheckMeta
 from django.shortcuts import render
 
 from django.http.response import JsonResponse
@@ -24,19 +25,22 @@ def services(request):
 def service(request, pk=None):
     service, created =Service.objects.get_or_create(pk=pk)
     print(request, pk, '\n', service, created)
-    if not created and request.method =='PUT':
+    if created and request.method =='PUT':
         service_data = JSONParser().parse(request)
         service_serializer = ServiceSerializer(data=service_data)
         if service_serializer.is_valid():
             service_serializer.save()
             return JsonResponse(service_serializer.data, status=status.HTTP_201_CREATED) 
         return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif created and request.method == 'POST':
+    elif not created and request.method == 'POST':
         try:
             service_data = JSONParser().parse(request)
             service_serializer = ServiceSerializer(data=service_data)
             if service_serializer.is_valid():
-                service_serializer.update()
+                service_serializer.update(
+                    Service(service.id_service),
+                    service_serializer.validated_data
+                )
                 return JsonResponse(service_serializer.data, status=status.HTTP_202_ACCEPTED)
             else:
                 return JsonResponse(service_serializer.data, status=status.HTTP_304_NOT_MODIFIED)
