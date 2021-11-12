@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- <meta > -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="/css/service_config.css">
+    <link rel="shortcut icon" href="/img/dog.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="banner">
+        <div id="mainTitle">Cadastro e edição de serviços</div>
+    </div>
+    <div id = menu>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service_config.html">Configurações</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+            <li><a href="service.html">Serviço</a></li>
+        </ul>
+    </div>
+    <div id="list"></div>
+    <form id="registerForm">
+        <div>
+          <label for="name">Nome do serviço</label>
+          <input type="text" name="name" id="name" autocomplete="on">
+        </div>
+    
+        <br>
+        <div>
+          <label for="small_time">Tempo estimado para pet de pequeno porte</label>
+          <input type="text" name="small_time" id="small_time" autocomplete="on">
+        </div>
+        <br>
+        <div>
+          <label for="medium_time">Tempo estimado para pet de médio porte</label>
+          <input type="text" name="medium_time" id="medium_time" autocomplete="on">
+        </div>
+        <br>
+        <div>
+          <label for="large_time">Tempo estimado para pet de grande porte</label>
+          <input type="text" name="large_time" id="large_time" autocomplete="on">
+        </div>
+    
+        <br>
+        <button type="submit" id="submit-btn">Salvar</button>
+      </form>
+    
+    <script type="module" src="js/register_detail.js">
+      var pk = {{pk}};
+    </script>
+
+
+</body>
+
+</html>

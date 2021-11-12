@@ -19,10 +19,13 @@ class ServiceSerializer(serializers.ModelSerializer):
  
     class Meta:
         model = Service
-        fields = ('name_service',
-                  'small_time',
-                  'medium_time',
-                  'large_time')
+        fields = (
+            'id_service',
+            'name_service',
+            'small_time',
+            'medium_time',
+            'large_time'
+        )
 
 
 class TutorSerializer(serializers.ModelSerializer):
