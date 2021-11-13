@@ -1,0 +1,36 @@
+@import "main.css";
+
+#centeredMenu  {
+    background-color: #E0FBFC;
+    border:  0.05ch solid #330c2f;
+    border-radius: 1rem;
+    align-self: center;
+    height: 80%;
+    width: 35%;
+    display: flex;
+    font-size: 5vh;
+    text-align: center;
+    margin: 10% auto 10% auto;
+    padding: 0vh 3vw 0vh 0vw;
+    vertical-align: center;
+}
+
+#mainTitle {
+    background-color: #EE6C4D;
+    border-radius: 1rem;
+    font-size: 10vh;
+    width: 13vh;
+    margin-right: 3vw;
+    padding: 5vh 0vw 5vh 0vw;
+}
+#mainTitle p{
+    transform: rotate(-90deg);
+    top:50%;
+    position: relative;
+    font-family: 'Fredoka One', cursive;
+    color: #293241;
+}
+
+#menu {
+    padding: 5vh 0vw 5vh 0vw;
+}
