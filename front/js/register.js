@@ -2,6 +2,12 @@ import { createService, getServices } from '../service/api.js';
 
 function servicesList(services) {
   const list = document.getElementById('list');
+  const header = `<tr id='header'>
+    <th>Nome</th>
+    <th>Pequeno</th>
+    <th>Médio</th>
+    <th>Grande</th>
+  </tr>`
   let itens = '';
 
   for (let service of services) {
@@ -12,12 +18,12 @@ function servicesList(services) {
     <th> ${service.small_time}</th>
     <th> ${service.medium_time}</th>
     <th> ${service.large_time}</th>
-    <th> <a href="service/${service.id_service}/"> Editar </a> </th>
+    <th class='light'><a  href="service/${service.id_service}/"> Editar </a> </th>
     </tr>
     `
   }
 
-  list.innerHTML = itens;
+  list.innerHTML = header+itens;
   console.log(list)
 }
 

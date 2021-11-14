@@ -1,15 +1,14 @@
 body {
     background-color:#98C1D9;
-    text-size-adjust: 30%;
-    font: italic;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-p {
+p, th {
     color:  #293241;
     font-family: 'Comfortaa', sans-serif;
+    font-weight: 300;
 }
 
 a {
@@ -22,6 +21,13 @@ a:visited{
     color:  #293241;
 
 }
+
+#mainTitle {
+    background-color: #EE6C4D;
+    font-family: 'Fredoka One', sans-serif;
+    color: #293241;
+}
+
 /* *html { 
     font-size: 62.5%; 
 }
