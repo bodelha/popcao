@@ -1,13 +1,34 @@
-/* *{
-    background-color:coral;
-    text-size-adjust: 30%;
-    font: italic;
+body {
+    background-color:#98C1D9;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html { 
+p, th {
+    color:  #293241;
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 300;
+}
+
+a {
+    color:  #293241;
+    outline: none;
+    text-decoration: none;
+    font-family: 'Comfortaa', sans-serif;
+}
+a:visited{
+    color:  #293241;
+
+}
+
+#mainTitle {
+    background-color: #EE6C4D;
+    font-family: 'Fredoka One', sans-serif;
+    color: #293241;
+}
+
+/* *html { 
     font-size: 62.5%; 
 }
 
