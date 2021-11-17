@@ -17,6 +17,7 @@ class Service(models.Model):
 class Tutor(models.Model):
     cellphone_tutor = models.IntegerField(primary_key=True)
     name_tutor = models.CharField(max_length=50, blank=False)
+    endereco_tutor = models.CharField(max_length=150, blank=True)
     # pet_tutor = models.ForeignObject(to=Pet)
 
 class Pet(models.Model):

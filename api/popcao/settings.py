@@ -101,12 +101,23 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'popcao',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'USER': 'popcao',
+        'PASSWORD': 'petpopC@0',
+        'HOST': 'popcao.mysql.uhserver.com',
         'PORT': '3306',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'popcao',
+#         'USER': 'root',
+#         'PASSWORD': '123456',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
