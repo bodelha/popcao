@@ -9,6 +9,7 @@ from django.db import models
 
 class Service(models.Model):
     id_service = models.BigAutoField(verbose_name='ServiceId', primary_key=True)
+    breed = models.IntegerField(blank=False, default=42)
     name_service = models.CharField(verbose_name='nameService', max_length=70, blank=False, default="0:30:00")
     small_time = models.DurationField(verbose_name='smallTime', blank=False, default="0:30:00")
     medium_time = models.DurationField(verbose_name='mediumTime', blank=False, default="0:35:00")
