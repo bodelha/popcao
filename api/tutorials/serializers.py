@@ -24,7 +24,8 @@ class ServiceSerializer(serializers.ModelSerializer):
             'name_service',
             'small_time',
             'medium_time',
-            'large_time'
+            'large_time',
+            'breed'
         )
 
 

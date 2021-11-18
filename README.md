@@ -1,21 +1,10 @@
 ## Pré-requisitos:
 * Python 3.6
-* npm
-* mysql-server
+* node
 * mysql-client
 * git
 * ssh (e configurado no github>>settings>>SSH and GPG keys) 
 
-
-
-## MySQL:
-Para o django 'funcionar', precisa de uma instancia MySQL rodando. Provavelmente será preciso criar uma database, e reiniciar o servidor. Não vou por essa parte aqui pq fiz via linha de comando no linux.
-* conferir status e endereço que está rodando:
-systemctl status mysql.service
-* parar servidor 
-systemctl stop mysql
-* iniciar servidor
-systemctl start mysql
 
 ## para o back:
 Se possivel trabalhar com env:

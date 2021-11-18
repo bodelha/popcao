@@ -7,6 +7,7 @@ function servicesList(services) {
     <th>Pequeno</th>
     <th>Médio</th>
     <th>Grande</th>
+    <th>Grupo</th>
   </tr>`
   let itens = '';
 
@@ -18,6 +19,7 @@ function servicesList(services) {
     <th> ${service.small_time}</th>
     <th> ${service.medium_time}</th>
     <th> ${service.large_time}</th>
+    <th> ${service.breed}</th>
     <th class='light'><a  href="service/${service.id_service}/"> Editar </a> </th>
     </tr>
     `
