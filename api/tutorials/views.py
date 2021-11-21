@@ -1,16 +1,23 @@
 import json
 from django.db.models.query import InstanceCheckMeta
+from django.http import response
 from django.shortcuts import render
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
  
-# from tutorials.models import Service, Tutorial
-from tutorials.models import Service
-# from tutorials.serializers import TutorialSerializer, ServiceSerializer
-from tutorials.serializers import  ServiceSerializer
+from tutorials.models import Breed, Tutor, Pet, Service, ServiceOrder
+from tutorials.serializers import  *
 from rest_framework.decorators import api_view
+
+
+@api_view(['GET'])
+def settings(request):
+    if request.method == 'GET':
+        services = Service.objects.all()
+        service_serializer = SettingsSerializer(services, many=True)
+        return JsonResponse(service_serializer.data, safe=False)
 
 
 @api_view(['GET'])
