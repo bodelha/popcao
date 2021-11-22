@@ -19,22 +19,13 @@ def settings(request):
         service_serializer = SettingsSerializer(services, many=True)
         return JsonResponse(service_serializer.data, safe=False)
 
-
-@api_view(['GET'])
-def services(request):
-    if request.method =='GET':
-        services = Service.objects.all()
-        service_serializer = ServiceSerializer(services, many=True)
-        return JsonResponse(service_serializer.data, safe=False)
-
-
 @api_view(['PUT', 'GET', 'POST', 'DELETE'])
 def service(request, pk=None):
     service, created =Service.objects.get_or_create(pk=pk)
     print(request, pk, '\n', service, created)
     if created and request.method =='PUT':
         service_data = JSONParser().parse(request)
-        service_serializer = ServiceSerializer(data=service_data)
+        service_serializer = SettingsSerializer(data=service_data)
         if service_serializer.is_valid():
             service_serializer.save()
             return JsonResponse(service_serializer.data, status=status.HTTP_201_CREATED) 
@@ -42,7 +33,7 @@ def service(request, pk=None):
     elif not created and request.method == 'POST':
         try:
             service_data = JSONParser().parse(request)
-            service_serializer = ServiceSerializer(data=service_data)
+            service_serializer = SettingsSerializer(data=service_data)
             if service_serializer.is_valid():
                 service_serializer.update(
                     Service(service.id_service),
@@ -51,17 +42,59 @@ def service(request, pk=None):
                 return JsonResponse(service_serializer.data, status=status.HTTP_202_ACCEPTED)
             else:
                 return JsonResponse(service_serializer.data, status=status.HTTP_304_NOT_MODIFIED)
-        except ServiceSerializer.errors:
+        except SettingsSerializer.errors:
             return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'GET':
-        service_serializer = ServiceSerializer(service)
+        service_serializer = SettingsSerializer(service)
         return JsonResponse(service_serializer.data)
         
     elif request. method == 'DELETE':
         service.delete()
         return JsonResponse({'message': 'Service was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
+@api_view(['GET'])
+def breeds(request):
+    if request.method == 'GET':
+        breeds = Breed.objects.all()
+        serializer = BreedDetailSerializer(breeds, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+@api_view(['GET'])
+def breed_detail(request, pk):
+    breed, created =Breed.objects.get_or_create(pk=pk)
+    if request.method == 'GET':
+        serializer = BreedDetailSerializer(breed)
+        return JsonResponse(serializer.data)
+
+@api_view(['GET'])
+def tutors(request):
+    if request.method == 'GET':
+        tutors =  Tutor.objects.all()
+        serializer = TutorSerializer(tutors, many=True)
+        return JsonResponse(serializer.data, safe=False)
+        
+@api_view(['GET'])
+def tutor_detail(request, pk):
+    if request.method == 'GET':
+        tutor = Tutor.objects.get(pk=pk)
+        serializer = TutorDetailSerializer(tutor)
+        return JsonResponse(serializer.data, safe=False)
+
+@api_view(['GET'])
+def schedule(request):
+    if request.method == 'GET':
+        orders = ServiceOrder.objects.all()
+        serializer = ServiceOrderSerializer(orders, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+# @api_view(['GET'])
+# def services(request):
+#     if request.method =='GET':
+#         services = Service.objects.all()
+#         service_serializer = ServiceSerializer(services, many=True)
+#         return JsonResponse(service_serializer.data, safe=False)
+# 
 # @api_view(['GET', 'POST', 'DELETE'])
 # def tutorial_list(request):
 #     if request.method == 'GET':

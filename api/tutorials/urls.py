@@ -2,11 +2,11 @@ from django.conf.urls import url
 from tutorials import views 
  
 urlpatterns = [ 
-    # url(r'^api/tutorials$', views.tutorial_list),
-    # url(r'^api/tutorials/(?P<pk>[0-9]+)$', views.tutorial_detail),
-    # url(r'^api/tutorials/published$', views.tutorial_list_published),
-    url(r'^api/services', views.services),
-    url(r'^api/service/(?P<pk>\d+)$', views.service),
-    url(r'^settings', views.settings)
-    # url(r'^api/service', views.service),
+    url(r'^service/(?P<pk>\d+)$', views.service),
+    url(r'^settings', views.settings),
+    url(r'^breeds', views.breeds),
+    url(r'^breed/(?P<pk>\d+)$', views.breed_detail),
+    url(r'^tutors', views.tutors),
+    url(r'^tutor/(?P<pk>\d+)$', views.tutor_detail),
+    url(r'^schedule', views.schedule),
 ]
