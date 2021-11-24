@@ -5,7 +5,7 @@ body {
     box-sizing: border-box;
 }
 
-p, th {
+p, th, h1, form {
     color:  #293241;
     font-family: 'Comfortaa', sans-serif;
     font-weight: 300;
