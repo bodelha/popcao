@@ -7,49 +7,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurações</title>
     <link rel="stylesheet" href="/css/service_config.css">
+        <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="shortcut icon" href="/img/dog.png" type="image/x-icon">
 </head>
 
 <body>
-    <div id="banner">
-        <div id="mainTitle">Cadastro e edição de serviços</div>
-    </div>
-    <div id = menu>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="service_config.html">Configurações</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
-            <li><a href="service.html">Serviço</a></li>
-        </ul>
-    </div>
+    <div id="container">
+      <div id="menu">
+        <p id="pMenu"><a href="index.html">Home</a></p>
+        <p id="pMenu"><a href="service.html">Ordem de Serviço</a></p>
+        <p id="pMenu"><a href="register.html">Cadastro</a></p>
+        <p id="pMenu"><a href="service_config.html">Configurações</a></p>
+        <div id="mainTitle"><p>POPCÃO</p></div>
+      </div>
     <div id="list"></div>
     <form id="registerForm">
         <div>
           <label for="name">Nome do serviço</label>
-          <input type="text" name="name" id="name" autocomplete="on">
+          <input type="text" name="name" id="name" autocomplete="on" value="">
         </div>
     
         <br>
+                <div>
+          <label for="time_service">Tempo estimado</label>
+          <input type="text" name="time_service" id="time_service" autocomplete="on">
+        </div>
         <div>
-          <label for="small_time">Tempo estimado para pet de pequeno porte</label>
-          <input type="text" name="small_time" id="small_time" autocomplete="on">
+          <label for="short_fur">Tempo estimado para pet de pêlo curto</label>
+          <input type="text" name="short_fur" id="short_fur" autocomplete="on">
         </div>
         <br>
         <div>
-          <label for="medium_time">Tempo estimado para pet de médio porte</label>
-          <input type="text" name="medium_time" id="medium_time" autocomplete="on">
+          <label for="medium_fur">Tempo estimado para pet de pêlo médio</label>
+          <input type="text" name="medium_fur" id="medium_fur" autocomplete="on">
         </div>
         <br>
         <div>
-          <label for="large_time">Tempo estimado para pet de grande porte</label>
-          <input type="text" name="large_time" id="large_time" autocomplete="on">
+          <label for="long_fur">Tempo estimado para pet de pêlo longo</label>
+          <input type="text" name="long_fur" id="long_fur" autocomplete="on">
         </div>
-    
+          <div>
+          <label for="breeds">Raças</label>
+          <input type="text" name="breeds" id="breeds" autocomplete="on">
+        </div>
         <br>
         <button type="submit" id="submit-btn">Salvar</button>
       </form>
     
-    <script type="module" src="js/register_detail.js">
+    <script type="module" src="js/service_detail.js">
       var pk = (pk);
     </script>
 

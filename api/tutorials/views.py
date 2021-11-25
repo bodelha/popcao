@@ -1,3 +1,4 @@
+from functools import partial
 import json
 from django.db.models.query import InstanceCheckMeta
 from django.http import response
@@ -23,17 +24,17 @@ def settings(request):
 def service(request, pk=None):
     service, created =Service.objects.get_or_create(pk=pk)
     print(request, pk, '\n', service, created)
-    if created and request.method =='PUT':
+    if created and request.method =='POST':
         service_data = JSONParser().parse(request)
         service_serializer = SettingsSerializer(data=service_data)
         if service_serializer.is_valid():
             service_serializer.save()
             return JsonResponse(service_serializer.data, status=status.HTTP_201_CREATED) 
         return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif not created and request.method == 'POST':
+    elif not created and request.method == 'PUT':
         try:
             service_data = JSONParser().parse(request)
-            service_serializer = SettingsSerializer(data=service_data)
+            service_serializer = SettingsSerializer(service, data=service_data, partial=True)
             if service_serializer.is_valid():
                 service_serializer.update(
                     Service(service.id_service),

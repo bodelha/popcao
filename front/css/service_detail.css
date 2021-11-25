@@ -53,25 +53,3 @@ header{
     font-family: 'Fredoka One', sans-serif;
     color: #293241;
 }
-#tableServices{
-    position:relative;
-    float: center;
-    background-color: #E0FBFC;
-    border:  0.05ch solid #330c2f;
-    border-radius: 1rem 1rem 0rem 0rem;
-    width: 100%;
-    margin: 5% 0% 0% 0%;
-    text-align: center;
-    padding-right: 0vw;
-}
-#tableServices th{
-    border:  0.05ch solid #330c2f;
-    background-color:#4C94BD;
-    border-radius: 0.3rem;
-    padding: 1rem;
-    align-self: center;
-}
-#header th, .light{
-    background-color:#79AECD;
-}
-
