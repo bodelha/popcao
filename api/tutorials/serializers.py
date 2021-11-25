@@ -1,3 +1,4 @@
+# from typing_extensions import Required
 from django.db.models import fields
 from django.utils import tree
 from rest_framework import serializers 
@@ -10,6 +11,7 @@ class BreedSerializer(serializers.ModelSerializer):
         model = Breed
         fields = (
             'id_breed',
+            'name_breed',
             'groomable',
         )
 
@@ -40,7 +42,7 @@ class SettingsSerializer(serializers.ModelSerializer):
         )
     
 class ServiceSerializer(serializers.ModelSerializer):
-    set = BreedSerializer()
+    set = BreedSerializer(source='set', many=True)
 
     class Meta:
         model = Service
