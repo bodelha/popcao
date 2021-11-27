@@ -40,15 +40,52 @@ class SettingsSerializer(serializers.ModelSerializer):
             'medium_fur',
             'long_fur',
         )
+        depth=1
+
+    def create(self, validated_data):
+        breed_data = validated_data.pop('set')
+        service = Service.objects.create(**validated_data)
+        for _breed in breed_data:
+            breed = Breed.objects.create(**_breed)
+            Group.objects.create(
+                id_service = service,
+                breed = breed
+            )
+        return service.id_service
+
+    def update(self, instance, data):
+        breed_data = data.pop('set')
+        service_data = SettingsSerializer(data=data, partial=True)
+        if service_data.is_valid():
+            service = Service.objects.update(**service_data.validated_data)
+            instance.set.clear()
+            for _breed in breed_data:
+                breed_ = BreedSerializer(data=_breed)
+                if breed_.is_valid():
+                    if "id_breed" in breed_.initial_data:
+                        breed_obj = Breed.objects.filter(pk=breed_.initial_data['id_breed'])
+                        breed_obj.update(**breed_.data)
+                        Group.objects.update_or_create(
+                            id_service = instance,
+                            breed = breed_obj.first()
+                        )
+                    else:
+                        breed_obj = Breed.objects.create(**breed_.validated_data)
+                        Group.objects.update_or_create(
+                            id_service = instance,
+                            breed = breed_obj
+                        )
+            return service
+
     
 class ServiceSerializer(serializers.ModelSerializer):
-    set = BreedSerializer(source='set', many=True)
+    breeds = BreedSerializer(source='set', many=True)
 
     class Meta:
         model = Service
         fields = (
             'id_service',
-            'set',
+            'breeds',
             'name_service',
             'time_service',
             'short_fur',

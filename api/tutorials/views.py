@@ -5,6 +5,7 @@ from django.http import response
 from django.shortcuts import render
 
 from django.http.response import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
  
@@ -20,39 +21,44 @@ def settings(request):
         service_serializer = SettingsSerializer(services, many=True)
         return JsonResponse(service_serializer.data, safe=False)
 
-@api_view(['PUT', 'GET', 'POST', 'DELETE'])
-def service(request, pk=None):
-    service, created =Service.objects.get_or_create(pk=pk)
-    print(request, pk, '\n', service, created)
-    if created and request.method =='POST':
+@api_view(['POST'])
+def create_service(request):
+    if request.method =='POST':
         service_data = JSONParser().parse(request)
         service_serializer = SettingsSerializer(data=service_data)
         if service_serializer.is_valid():
-            service_serializer.save()
-            return JsonResponse(service_serializer.data, status=status.HTTP_201_CREATED) 
+            service = service_serializer.create(service_serializer.validated_data)
+            return JsonResponse(SettingsSerializer(Service(service)).data, status=status.HTTP_201_CREATED) 
         return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif not created and request.method == 'PUT':
-        try:
-            service_data = JSONParser().parse(request)
-            service_serializer = SettingsSerializer(service, data=service_data, partial=True)
-            if service_serializer.is_valid():
-                service_serializer.update(
-                    Service(service.id_service),
-                    service_serializer.validated_data
-                )
-                return JsonResponse(service_serializer.data, status=status.HTTP_202_ACCEPTED)
-            else:
-                return JsonResponse(service_serializer.data, status=status.HTTP_304_NOT_MODIFIED)
-        except SettingsSerializer.errors:
-            return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'GET':
-        service_serializer = SettingsSerializer(service)
-        return JsonResponse(service_serializer.data)
-        
-    elif request. method == 'DELETE':
-        service.delete()
-        return JsonResponse({'message': 'Service was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+@api_view(['PUT', 'GET', 'DELETE'])
+def service(request, pk=None):
+    try:
+        service = Service.objects.get(pk=pk)
+    # print(request, pk, '\n', service)
+        if request.method == 'PUT':
+            try:
+                service_data = JSONParser().parse(request)
+                service_serializer = SettingsSerializer(service, data=service_data, partial=True)
+                if service_serializer.is_valid():
+                    service_serializer.update(instance=service, data=service_serializer.initial_data)
+                    return JsonResponse(service_serializer.data, status=status.HTTP_202_ACCEPTED)
+                else:
+                    return JsonResponse(service_serializer.data, status=status.HTTP_304_NOT_MODIFIED)
+            except SettingsSerializer.errors:
+                return JsonResponse(service_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        elif request.method == 'GET'and service:
+            service_serializer = SettingsSerializer(service)
+            return JsonResponse(service_serializer.data)
+            
+        elif request. method == 'DELETE':
+            service.delete()
+            return JsonResponse({'message': 'Service was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+    except ObjectDoesNotExist:
+        return JsonResponse({'message': 'Service not exists!'}, status=status.HTTP_410_GONE)
+    except Exception as e:
+        return e
 
 @api_view(['GET'])
 def breeds(request):
@@ -60,6 +66,16 @@ def breeds(request):
         breeds = Breed.objects.all()
         serializer = BreedDetailSerializer(breeds, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+@api_view(['POST'])
+def create_breed(request):
+    if request.method =='POST':
+        breed_data = JSONParser().parse(request)
+        breed_serializer = BreedDetailSerializer(data=breed_data)
+        if breed_serializer.is_valid():
+            breed_serializer.create(breed_serializer.validated_data)
+            return JsonResponse(breed_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(breed_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def breed_detail(request, pk):

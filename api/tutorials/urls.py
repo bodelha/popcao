@@ -2,6 +2,7 @@ from django.conf.urls import url
 from tutorials import views 
  
 urlpatterns = [ 
+    url(r'^service/new', views.create_service),
     url(r'^service/(?P<pk>\d+)$', views.service),
     url(r'^settings', views.settings),
     url(r'^breeds', views.breeds),
