@@ -1,0 +1,117 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novo Serviço</title>
+    <link rel="stylesheet" href="/css/new_service.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="shortcut icon" href="/img/dog.png" type="image/x-icon" />
+  </head>
+
+  <body>
+    <div id="popUp"></div>
+    <div id="container">
+      <div id="menu">
+        <p id="pMenu"><a href="index.html">Home</a></p>
+        <p id="pMenu"><a href="service.html">Ordem de Serviço</a></p>
+        <p id="pMenu"><a href="register.html">Cadastro</a></p>
+        <p id="pMenu"><a href="service_config.html">Configurações</a></p>
+        <div id="mainTitle"><p>POPCÃO</p></div>
+      </div>
+      <div id="form_new">
+        <form id="registerForm">
+          <div class="form_session" id="name">
+            <label for="name_service">Nome do serviço</label>
+            <input
+              type="text"
+              name="name_service"
+              id="name_service"
+              autocomplete="on"
+              value=""
+            />
+          </div>
+          <div class="form_session" id="groomable">
+            <div>Tosa estética?</div>
+            <div id="pair">
+              <label for="groomable_true">Sim</label>
+              <input type="radio" name="groomable" id="groomable1" value="1" />
+              <label for="groomable_false">Não</label>
+              <input type="radio" name="groomable" id="groomable0" value="0" />
+            </div>
+          </div>
+          <div id="time"></div>
+          <script>
+            const btn1 = document.getElementById("groomable1");
+            const btn0 = document.getElementById("groomable0");
+            btn1.onclick = function () {
+              const time = document.getElementById("time");
+              time.innerHTML = `<div class="form_session">
+            <label for="short_fur">Tempo estimado para pet de pêlo curto</label>
+            <input type="text" class="duration-input" name="short_fur" id="short_fur" required pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}" value="00:00:00">
+          </div>
+          <div class="form_session">
+            <label for="medium_fur">Tempo estimado para pet de pêlo médio</label>
+            <input type="text" class="duration-input" name="medium_fur" id="medium_fur" required pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}" value="00:00:00">
+          </div>
+          <div class="form_session">
+            <label for="long_fur">Tempo estimado para pet de pêlo longo</label>
+            <input type="text" class="duration-input" name="long_fur" id="long_fur" required pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}" value="00:00:00">
+          </div>
+            <div>`;
+            };
+            btn0.onclick = function () {
+              const time = document.getElementById("time");
+              time.innerHTML = `<div class="form_session">
+            <label for="time_service">Tempo estimado</label>
+            <input class="duration-input" type="text" id="time_service" required pattern="[0-9]{2}:[0-9]{2}" value="00:00">
+          </div>`;
+            };
+          </script>
+
+          <div class="form_session">
+            <div id="breedSession">
+            <div>
+              <label for="name">Nome</label>
+              <input
+                type="text"
+                class="name_breed"
+                id="name0"
+                autocomplete="on",
+                name="breed_input"
+              />
+            </div>
+            </div>
+            <button type="button" id="new_breed">Nova Raça</button>
+            <script>
+              const n_breed = document.getElementById("new_breed");
+              n_breed.onclick = function () {
+                const b_class = document.getElementById("breedSession");
+                const new_b = b_class.getElementsByClassName("breed_input");
+                console.log(b_class, new_b);
+                cont = b_class.innerHTML;
+                cont =
+                  cont +
+                  `<div><label for="name">Nome</label>
+          <input type="text" name="breed_input" class="name_breed" id="name${new_b.length}" autocomplete="on"></div>`;
+                b_class.innerHTML = cont;
+              };
+            </script>
+          </div>
+          <div>
+            <button type="submit" class="submit" id="RegisterFormButton">Salvar</button>
+          </div>
+        </form>
+      </div>
+
+      <script type=module src="js/new_service.js"></script>
+    </div>
+  </body>
+</html>

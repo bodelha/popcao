@@ -56,7 +56,7 @@ header{
 input:invalid:not(:focus) {
     background: red; 
     }
-#form_update{
+#form_new{
     position:absolute;
     float: center;
     background-color: #E0FBFC;

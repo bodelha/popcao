@@ -8,7 +8,6 @@ header{
     text-align: center;
     
 }
-
 #container {
     display: flex;
     align-self: center;
@@ -17,21 +16,22 @@ header{
     width: 80%;
 }
 #menu{
-    float: left;
+    float:top;
+    position: fixed;
     background-color: #EE6C4D;
     border-radius: 0rem 2rem 0rem 0rem;
     border:  0.05ch solid #330c2f;
-    width: 20%;
-    height: 40%;
-    top: 10%;
-    font-size: 2.5vh;
-    height: 95.2%;
+    width: 20vw;
+    height: 100vh;
+    top: 0vh;
+    font-size: 3.5vh;
+    height: 100vh;
     text-align: right;
     margin-right: 5vw;    
-    padding-top: 3%;
+    padding-top: 3vh;
 }
 #pMenu{
-    padding-top: 5%;
+    padding-top: 3vh;
     background-color: #E0FBFC;
 }
 
@@ -48,30 +48,34 @@ header{
 }
 #mainTitle p{
     transform: rotate(-90deg);
-    top:40%;
+    top:10%;
     position: relative;
     font-family: 'Fredoka One', sans-serif;
     color: #293241;
 }
 #tableServices{
-    position:relative;
+    position:absolute;
     float: center;
     background-color: #E0FBFC;
+    font-size: 1.8vh;
     border:  0.05ch solid #330c2f;
     border-radius: 1rem 1rem 0rem 0rem;
-    width: 100%;
-    margin: 5% 0% 0% 0%;
-    text-align: center;
+    width: 70vw;
+    margin: 3vw 5vh 3vw 25vw;
     padding-right: 0vw;
 }
 #tableServices th{
     border:  0.05ch solid #330c2f;
     background-color:#4C94BD;
-    border-radius: 0.3rem;
+    color: #E0FBFC;
+    border-radius: 0.7rem;
     padding: 1rem;
-    align-self: center;
+    width: 70vh;
+    align-self:center;
 }
 #header th, .light{
     background-color:#79AECD;
 }
-
+.breed{
+    color: #E0FBFC;
+}

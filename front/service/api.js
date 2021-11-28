@@ -1,7 +1,14 @@
 const BASE_URL_API = 'http://127.0.0.1:8000';
 
+export async function getSettings() {
+  const response = await fetch(`${BASE_URL_API}/settings`);
+  const settings = await response.json();
+  return settings;
+}
+
 export async function createService(data) {
-  const response = await fetch(`${BASE_URL_API}/service`, {
+  console.log(JSON.stringify(data));
+  const response = await fetch(`${BASE_URL_API}/service/new`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -9,12 +16,6 @@ export async function createService(data) {
     }
   });
   return response;
-}
-
-export async function getSettings() {
-  const response = await fetch(`${BASE_URL_API}/settings`);
-  const settings = await response.json();
-  return settings;
 }
 
 export async function getService(id) {

@@ -1,25 +1,26 @@
-import { createService, getSettings } from '../service/api.js';
+import { getSettings, deleteService, createService } from '../service/api.js';
 
 function servicesList(services) {
   const list = document.getElementById('list');
   const header = `<tr id='header'>
-    <th>Nome</th>
-    <th>Raças</th>
-    <th>Tempo Estimado Pêlo Curto</th>
-    <th>Tempo Estimado Pêlo Médio</th>
-    <th>Tempo Estimado Pêlo Longo</th>
+    <th id='name'>Nome</th>
+    <th id='breed'>Raças</th>
+    <th>Tempo Estimado<br>Pêlo Curto</th>
+    <th>Tempo Estimado<br>Pêlo Médio</th>
+    <th>Tempo Estimado<br>Pêlo Longo</th>
+    <th><button class="create-btn">Novo Serviço</button></th>
   </tr>`
   let itens = '';
 
   for (let service of services) {
     let _obj = ''
     for (let breed of service.breeds){
-      _obj += `<p> ${breed.name_breed} </p>`
+      _obj += `<p class=breed> ${breed.name_breed} </p>`
     }
     itens += `
     <tr id=${service.id_service}>
-    <th>${service.name_service}</th>
-    <th> ${_obj}</th>
+    <th id='name'>${service.name_service}</th>
+    <th id='breed'> ${_obj}</th>
     <th> ${service.short_fur || service.time_service}</th>
     <th> ${service.medium_fur || "Não se aplica"}</th>
     <th> ${service.long_fur || "Não se aplica"}</th>
@@ -40,45 +41,30 @@ getSettings().then((data) => {
   servicesList(data);
 });
 
-
 document.addEventListener('click', (event) => {
-	if (!event.target.matches('.update-btn')) return;
+  console.log(event);
+	if (!event.target.matches('.create-btn')) return;
 
 	event.preventDefault();
-  location.href = `/service_detail?id=${event.target.value}`;
+  createService().then((data)=>{
+    console.log(data);
+  });
+  location.href = `/new_service.html`;
 }, false);
+
 
 document.addEventListener('click', (event) => {
 	if (!event.target.matches('.delete-btn')) return;
 
 	event.preventDefault();
-  deletePet(event.target.value).then((data) => {
-    console.log('pet removido');
+  deleteService(event.target.value).then((data) => {
+    document.location.reload(true);
   });
 }, false);
 
-// const form = document.getElementById('registerForm');
+document.addEventListener('click', (event) => {
+	if (!event.target.matches('.update-btn')) return;
 
-// function formSubmit(event) {
-//   const data = {
-//     name_service: document.getElementById('name').value,
-//     small_time: document.getElementById('small_time').value,
-//     medium_time: document.getElementById('medium_time').value,
-//     large_time: document.getElementById('large_time').value,
-//   };
-//   createService(data).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     return Promise.reject(response);
-//   }).then((data) => {
-//     console.log(data);
-//   }).catch((error) => {
-//     console.warn(error);
-//   });
-// }
-
-// form.addEventListener('submit', (event) => {
-//   event.preventDefault();
-//   formSubmit();
-// })
+	event.preventDefault();
+  location.href = `/service_detail.html?id=${event.target.value}`;
+}, false);
