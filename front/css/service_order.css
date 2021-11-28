@@ -54,7 +54,7 @@ header{
     color: #293241;
 }
 
-#form_update{
+#order{
     position:absolute;
     float: center;
     background-color: #E0FBFC;
@@ -65,48 +65,18 @@ header{
     margin: 15vh 5vw 0vh 32vw;
     padding: 5vh 2vw 5vh 2vw;
 }
-.form_session{
-    display:table;
-    padding: 1rem;
-    color: #E0FBFC;
-    border-radius: 0.7rem;
-    margin: 1vh;
+#order th{
     border:  0.05ch solid #330c2f;
     background-color:#4C94BD;
-    width: 93%;
-    justify-content:space-between;
-    vertical-align: middle;
+    color: #E0FBFC;
+    border-radius: 0.7rem;
+    padding: 1rem;
+    width: 70vh;
+    align-self:center;
 }
-input{
-    height: 5vh;
-    margin: 2vh 0vw 2vh 0vw;
-    text-align:center;
-    width: 100%;
+#header th, .light{
+    background-color:#79AECD;
 }
-label{
-    width: max-content;
-}
-#groomable{
-    display: flex;
-    justify-content:space-between;
-}
-#pair{
-    display: flex;
-}
-#breedSession {
-    vertical-align: middle;
-}
-#breedSession label{
-    vertical-align: middle;
-    padding-top: 3vh;
-}
-#new_breed{
-    height: 5vh;
-    width: 8vw;
-    float: right;
-}
-.submit{
-    float: right;
-    width: 15vw;
-    height: 5vh;
+.pet{
+    color: #E0FBFC;
 }

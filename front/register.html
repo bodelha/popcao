@@ -1,110 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/teladecadastro.css">
-    <link rel="shortcut icon" href="/img/dog.png" type="image/x-icon">
-    <title>Tela de Cadastro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
-</head>
-<body>
-    
-        <div id="container">
-        <div id="menu">
-            <p id="pMenu"><a href="index.html">Home</a></p>
-            <p id="pMenu"><a href="service.html">Ordem de Serviço</a></p>
-            <p id="pMenu"><a href="register.html">Cadastro</a></p>
-            <p id="pMenu"><a href="service_config.html">Configurações</a></p>
-            <div id="mainTitle"><p>POPCÃO</p></div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/register.css" />
+    <link rel="shortcut icon" href="/img/dog.png" type="image/x-icon" />
+    <title>Cadastro</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <div id="menu">
+        <p id="pMenu"><a href="index.html">Home</a></p>
+        <p id="pMenu"><a href="service_order.html">Ordem de Serviço</a></p>
+        <p id="pMenu"><a href="register.html">Cadastro</a></p>
+        <p id="pMenu"><a href="service_config.html">Configurações</a></p>
+        <div id="mainTitle"><p>POPCÃO</p></div>
+      </div>
 
-    <div id="mainContend">
-    <div id="pageTitle">
-        <h1 id="titulo">Cadastro de Clientes</h1>
-        <p id="subtitulo">Complete as informações</p><br>
-    
-    </div>
-<div id="formulario">
-    <form>
-        <fieldset class="grupo">
+      <div id="mainContend">
+        <form id="register_form">
+          <div id="tutor">
             <div id="check">
-                <label for= ><strong>Name:</strong></label>
-                <input type= "text" nome= "nome" id= "nome" required>
-            
+              <label for="nome">Nome</label>
+              <input type="text" name="nome" id="nome" required />
             </div>
-            <div class="campo">
-                <label for= ><strong>Sobrenome:</strong></label>
-                <input type= "text" name= "sobrenome" id= "sobrenome" required>
+
+            <div class="form_session">
+              <label for="celular1">Telefone 1</label>
+              <input type="text" name="telefone" id="celular1" required />
             </div>
-        </fieldset>
-        <fieldset class="grupo">
-            <div class="campo">
-                <label for=></label><strong>Endereço :</strong>
-                <input type="text" name="endereço" id="endereço" required>
-            </div><br>
-            <div class="campo">
-                <label for=></label><strong> Telefone 1:</strong>
-                <input type="text" name="telefone" id="telefone" required> 
-            </div><br>
-            <div class="campo">
-                <label for=></label><strong>Telefone 2:</strong>
-                <input type="text" name="telefone" id="telefone">
-            </div><br>
-            <div class="campo">
-                 <label for=></label><strong>Celular :</strong>
-                 <input type="text" name="celular" id="celular">
-            </div><br>
-            <div class="campo">
-                <label for=></label><strong>Nome do Pet</strong>
-                <input type="text" name="nome do pet" id="nome do pet" required>
-            </div><br>
-            <div class="campo">
-                <label for=></label><strong>Porte :</strong>
-                <input type="radio" name="porte" value="pequeno porte">"Pequeno Porte"
-                <input type="radio" name="porte" value="médio porte">"Médio Porte"
-                <input type="radio" name="porte" value="grande porte">"Grande Porte"
-             </div><br>
-    
-             <div class="campo">
-                 <label for=></label><strong>Tipo de Pelo :</strong><br>
-                 <select>
-                     <option>Curto</option><div>
-                    <option>Longo</option>
-                     <option>Duplo</option>
-                 </select>
-                    
-                
-                
-             </div><br>
-    
-             <div>
-                 <label for=></label> <strong>Tipo de Serviço :</strong><br>
-                 <select>
-                     <option>Banho e Tosa Higiênica</option>
-                     <option>Banho e Tosa Máquina</option>
-                     <option>Banho e Tosa Tesoura</option>
-                 </select>
-             </div>
-
-        </fieldset>
-
-        
-        
-
-        
-    </form>
+            <div class="form_session">
+              <label for="celular2">Telefone 2</label>
+              <input type="text" name="telefone" id="celular2" />
+            </div>
+            <div class="form_session">
+              <label for="adress">Endereço</label>
+              <input type="text" name="adress" id="adress" />
+            </div>
+          </div>
+          <div class="pet_sector">
+            <div class="pet_group" id="pet0">
+              <div>
+                <div class="form_session">
+                  <label for="pet_name">Nome do Pet</label>
+                  <input type="text" name="pet_name" id="pet_name0" required />
+                </div>
+                <div class="form_session" id="anchor0"></div>
+                <div class="form_session" id="sex0">
+                  <div>Sexo</div>
+                  <div id="pair">
+                    <label for="sex0">Macho</label>
+                    <input type="radio" name="sex0" id="male" value="M" />
+                    <label for="sex0">Fêmea</label>
+                    <input type="radio" name="sex0" id="female" value="F" />
+                  </div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+          </div>
+          <div>
+            <button type="button" id="new_pet">Novo Pet</button>
+          </div>
+          <button
+            class="submit"
+            type="submit"
+            form="register_form"
+          >
+            Cadastrar Tutor
+          </button>
+          <script type="module" src="js/register.js"></script>
+        </form>
+      </div>
     </div>
-
-    
-    
-    </p>
-    <button class="botao" type="submit" form="f_cadastro" onclick="alert('Cadastrado com Sucesso');"> 
-        Cadastro
-
-    </button>
-    </div>
-</body>
-
+  </body>
 </html>

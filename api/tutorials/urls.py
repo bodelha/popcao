@@ -1,4 +1,4 @@
-from django.conf.urls import url 
+from django.conf.urls import url
 from tutorials import views 
  
 urlpatterns = [ 
@@ -10,4 +10,7 @@ urlpatterns = [
     url(r'^tutors', views.tutors),
     url(r'^tutor/(?P<pk>\d+)$', views.tutor_detail),
     url(r'^schedule', views.schedule),
+    url(r'^pets', views.pets),
+    url(r'^tutor/new', views.create_tutor),
+    url(r'^service_order', views.order),
 ]

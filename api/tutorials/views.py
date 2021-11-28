@@ -88,15 +88,35 @@ def breed_detail(request, pk):
 def tutors(request):
     if request.method == 'GET':
         tutors =  Tutor.objects.all()
-        serializer = TutorSerializer(tutors, many=True)
+        serializer = TutorDetailSerializer(tutors, many=True)
         return JsonResponse(serializer.data, safe=False)
         
-@api_view(['GET'])
+@api_view(['PUT', 'GET', 'DELETE'])
 def tutor_detail(request, pk):
-    if request.method == 'GET':
+    try:
         tutor = Tutor.objects.get(pk=pk)
-        serializer = TutorDetailSerializer(tutor)
-        return JsonResponse(serializer.data, safe=False)
+        if request.method == 'GET':
+            serializer = TutorDetailSerializer(tutor)
+            return JsonResponse(serializer.data, safe=False)
+        elif request.method == "PUT":
+            try:
+                tutor_data = JSONParser().parse(request)
+                tutor_serializer = TutorDetailSerializer(tutor, data=tutor_data, partial=True)
+                if tutor_serializer.is_valid():
+                    tutor_serializer.update(instance=tutor, data=tutor_serializer.initial_data)
+                    return JsonResponse(tutor_serializer.data, status=status.HTTP_202_ACCEPTED)
+                else:
+                    return JsonResponse(tutor_serializer.data, status=status.HTTP_304_NOT_MODIFIED)
+            except SettingsSerializer.errors:
+                return JsonResponse(tutor_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        elif request.method == "DELETE":
+            tutor.delete()
+            return JsonResponse({'message': 'Tutor was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+    except ObjectDoesNotExist:
+        return JsonResponse({'message': 'Service not exists!'}, status=status.HTTP_410_GONE)
+    except Exception as e:
+        return e
+
 
 @api_view(['GET'])
 def schedule(request):
@@ -104,6 +124,33 @@ def schedule(request):
         orders = ServiceOrder.objects.all()
         serializer = ServiceOrderSerializer(orders, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+@api_view(['GET'])
+def pets(request):
+    if request.method == 'GET':
+        pets =  Pet.objects.all()
+        serializer = PetSerializer(pets, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+@api_view(['POST'])
+def create_tutor(request):
+    if request.method =='POST':
+        tutor_data = JSONParser().parse(request)
+        tutor_serializer = TutorDetailSerializer(data=tutor_data)
+        if tutor_serializer.is_valid():
+            tutor = tutor_serializer.create(tutor_serializer.validated_data)
+            return JsonResponse(TutorDetailSerializer(Tutor(tutor)).data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(tutor_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def order(request):
+    if request.method =='POST':
+        order_data = JSONParser().parse(request)
+        serializer = ServiceOrderSerializer(data=order_data)
+        if serializer.is_valid():
+            serializer.create(serializer.validated_data)
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # @api_view(['GET'])
 # def services(request):

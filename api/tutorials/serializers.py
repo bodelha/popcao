@@ -1,4 +1,5 @@
 # from typing_extensions import Required
+from functools import partial
 from django.db.models import fields
 from django.utils import tree
 from rest_framework import serializers 
@@ -93,19 +94,6 @@ class ServiceSerializer(serializers.ModelSerializer):
             'long_fur',
         )
 
-class TutorSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Tutor
-        fields = (
-            'id_tutor',
-            'name_tutor',
-            'cellphone1',
-            'cellphone2',
-        )
-
-
-
 class PetSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -113,6 +101,7 @@ class PetSerializer(serializers.ModelSerializer):
         fields = (
             'id_pet',
             'breed_id',
+            'name_pet',
         )
 
 class PetDetailSerializer(serializers.ModelSerializer):
@@ -128,7 +117,7 @@ class PetDetailSerializer(serializers.ModelSerializer):
             'sex'
         )
 
-class TutorDetailSerializer(serializers.ModelSerializer):
+class TutorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tutor
@@ -138,8 +127,51 @@ class TutorDetailSerializer(serializers.ModelSerializer):
             'cellphone1',
             'cellphone2',
             'endereco_tutor',
-            'pets_set'
         )
+
+class TutorDetailSerializer(serializers.ModelSerializer):
+    pets=PetDetailSerializer(source='pets_set', many=True)
+
+    class Meta:
+        model = Tutor
+        fields = (
+            'id_tutor',
+            'name_tutor',
+            'cellphone1',
+            'cellphone2',
+            'endereco_tutor',
+            'pets'
+        )
+    
+    def create(self, validated_data):
+        pets = validated_data.pop('pets_set')
+        tutor = Tutor.objects.create(**validated_data)
+        for _pet in pets:
+            _pet["id_tutor"] = tutor
+            Pet.objects.create(**_pet)
+        return tutor.id_tutor
+
+    def update(self, instance, data):
+        pets_data = data.pop('pets_set')
+        new_pets=[]
+        tutor_data = TutorDetailSerializer(data=data, partial=True)
+        if tutor_data.is_valid():
+            tutor_obj = Tutor.objects.filter(pk=instance.id_tutor)
+            tutor_obj.update(**tutor_data.validated_data)
+            for _pet in pets_data:
+                pet_ = PetDetailSerializer(data=_pet)
+                if pet_.is_valid():
+                    if 'id_pet' in pet_.initial_data:
+                        pet_obj=Pet.objects.filter(pk=pet_.initial_data['id_pet'])
+                        pet_obj.update(**pet_.data)
+                        new_pets.append(pet_obj.first())
+                    else:
+                        _pet["id_tutor"] = instance.id_tutor
+                        pet = PetDetailSerializer(data=_pet, partial=True)
+                        if pet.is_valid():
+                            pet_obj = Pet.objects.create(**pet.validated_data)
+                            new_pets.append(pet_obj)
+            return tutor_obj
 
 class AttendanceSerializer(serializers.ModelSerializer):
     # service_order =ServiceOrderSerializer(source='id_attendance')
@@ -167,3 +199,33 @@ class ServiceOrderSerializer(serializers.ModelSerializer):
             'pet_ids', 
             'attendances'
         )
+    def create(self, validated_data):
+        pets = validated_data.pop('pets_set')
+        tutor = Tutor.objects.create(**validated_data)
+        for _pet in pets:
+            _pet["id_tutor"] = tutor
+            Pet.objects.create(**_pet)
+        return tutor.id_tutor
+
+    def update(self, instance, data):
+        pets_data = data.pop('pets_set')
+        new_pets=[]
+        tutor_data = TutorDetailSerializer(data=data, partial=True)
+        if tutor_data.is_valid():
+            tutor_obj = Tutor.objects.filter(pk=instance.id_tutor)
+            tutor_obj.update(**tutor_data.validated_data)
+            for _pet in pets_data:
+                pet_ = PetDetailSerializer(data=_pet)
+                if pet_.is_valid():
+                    if 'id_pet' in pet_.initial_data:
+                        pet_obj=Pet.objects.filter(pk=pet_.initial_data['id_pet'])
+                        pet_obj.update(**pet_.data)
+                        new_pets.append(pet_obj.first())
+                    else:
+                        _pet["id_tutor"] = instance.id_tutor
+                        pet = PetDetailSerializer(data=_pet, partial=True)
+                        if pet.is_valid():
+                            pet_obj = Pet.objects.create(**pet.validated_data)
+                            new_pets.append(pet_obj)
+            return tutor_obj
+

@@ -28,7 +28,7 @@ class Group(models.Model):
     id_service = models.ForeignKey(to=Service, on_delete=CASCADE)
 
 class Tutor(models.Model):
-    id_tutor = models.BigAutoField(primary_key=True, db_column='Id', default=42)
+    id_tutor = models.BigAutoField(primary_key=True, db_column='Id')
     name_tutor = models.CharField(max_length=50, blank=False)
     cellphone1 = models.CharField(max_length=15, verbose_name="Telefone Principal", db_column='Telefone1', default='-1')
     cellphone2 = models.CharField(max_length=15, verbose_name="Outro Telefone", null=True, db_column='Telefone2', blank=True)

@@ -53,9 +53,7 @@ header{
     font-family: 'Fredoka One', sans-serif;
     color: #293241;
 }
-input:invalid:not(:focus) {
-    background: red; 
-    }
+
 #form_new{
     position:absolute;
     float: center;
