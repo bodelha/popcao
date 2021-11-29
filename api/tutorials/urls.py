@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^pets', views.pets),
     url(r'^tutor/new', views.create_tutor),
     url(r'^service_order', views.order),
+    url(r'^service_order/(?P<pk>\d+)$', views.order_detail),
 ]

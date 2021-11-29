@@ -1,4 +1,4 @@
-import { getTutors } from "../service/api.js";
+import { getTutors, createServiceOrder} from "../service/api.js";
 
 function tutorList(tutors) {
   const anchor = document.getElementById("tutor_list");
@@ -32,3 +32,12 @@ getTutors().then((data) => {
   console.log(data);
   tutorList(data);
 });
+
+
+document.addEventListener('click', (event) => {
+  console.log(event);
+	if (!event.target.matches('.order-btn')) return;
+
+	event.preventDefault();
+  location.href = `/service_order_new.html?id=${event.target.value}`;
+}, false);

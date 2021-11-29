@@ -48,4 +48,6 @@ const form = document.getElementById("registerForm");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   formSubmit();
+  alert(event)
+  window.location.href = "service_config.html";
 });

@@ -41,7 +41,7 @@ getService(serviceId).then((data) => {
     const time = document.getElementById("time");
     time.innerHTML = `<div class="form_session">
       <label for="time_service">Tempo estimado</label>
-      <input class="duration-input" type="text" id="time_service" required pattern="[0-9]{2}:[0-9]{2}" value=${time_service}>
+      <input class="duration-input" type="text" id="time_service" required pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}" value=${time_service}>
     </div>`;
     const rdb = document.getElementById("groomable0");
     rdb.checked = true;
@@ -145,4 +145,6 @@ function formSubmit() {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   formSubmit();
+  alert(event);
+  window.location.href = "service_config.html";
 });

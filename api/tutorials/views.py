@@ -79,7 +79,7 @@ def create_breed(request):
 
 @api_view(['GET'])
 def breed_detail(request, pk):
-    breed, created =Breed.objects.get_or_create(pk=pk)
+    breed =Breed.objects.get(pk=pk)
     if request.method == 'GET':
         serializer = BreedDetailSerializer(breed)
         return JsonResponse(serializer.data)
@@ -151,6 +151,14 @@ def order(request):
             serializer.create(serializer.validated_data)
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED) 
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def order_detail(request, pk):
+    order =ServiceOrder.objects.get(pk=pk)
+    if request.method == 'GET':
+        serializer = ServiceOrderSerializer(order)
+        return JsonResponse(serializer.data)
 
 # @api_view(['GET'])
 # def services(request):

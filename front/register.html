@@ -43,7 +43,7 @@
               <input type="text" name="adress" id="adress" />
             </div>
           </div>
-          <div class="pet_sector">
+          <div class="pet_sector" id="pet_sector">
             <div class="pet_group" id="pet0">
               <div>
                 <div class="form_session">
@@ -61,7 +61,6 @@
                   </div>
                 </div>
               </div>
-              <div></div>
             </div>
           </div>
           <div>
@@ -75,6 +74,21 @@
             Cadastrar Tutor
           </button>
           <script type="module" src="js/register.js"></script>
+          <script>
+
+            function onInput(id) {
+              var val = document.getElementById(`id_breed${id}`).value;
+              var opts = document.getElementsByClassName("option");
+              console.log("opts", opts)
+              for (var i = 0; i < opts.length; i++) {
+                if (opts[i].value === val) {
+                  console.log(val,opts.item(i), opts[i].value)
+                  document.getElementById(`id_breed_hidden${id}`).value=opts[i].id
+                  break;
+                }
+              }
+            }
+          </script>
         </form>
       </div>
     </div>
