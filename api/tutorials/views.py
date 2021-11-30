@@ -39,7 +39,7 @@ def service(request, pk=None):
         if request.method == 'PUT':
             try:
                 service_data = JSONParser().parse(request)
-                service_serializer = SettingsSerializer(service, data=service_data, partial=True)
+                service_serializer = SettingsSerializer(service, data=service_data)
                 if service_serializer.is_valid():
                     service_serializer.update(instance=service, data=service_serializer.initial_data)
                     return JsonResponse(service_serializer.data, status=status.HTTP_202_ACCEPTED)
@@ -103,7 +103,7 @@ def tutor_detail(request, pk):
                 tutor_data = JSONParser().parse(request)
                 tutor_serializer = TutorDetailSerializer(tutor, data=tutor_data, partial=True)
                 if tutor_serializer.is_valid():
-                    tutor_serializer.update(instance=tutor, data=tutor_serializer.initial_data)
+                    tutor_serializer.update(instance=tutor, data=tutor_serializer)
                     return JsonResponse(tutor_serializer.data, status=status.HTTP_202_ACCEPTED)
                 else:
                     return JsonResponse(tutor_serializer.data, status=status.HTTP_304_NOT_MODIFIED)

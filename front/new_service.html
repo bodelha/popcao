@@ -27,16 +27,10 @@
         <div id="mainTitle"><p>POPCÃO</p></div>
       </div>
       <div id="form_new">
-        <form id="registerForm">
+        <form id="registerForm" autocomplete="off">
           <div class="form_session" id="name">
             <label for="name_service">Nome do serviço</label>
-            <input
-              type="text"
-              name="name_service"
-              id="name_service"
-              autocomplete="on"
-              value=""
-            />
+            <input type="text" name="name_service" id="name_service" value="" />
           </div>
           <div class="form_session" id="groomable">
             <div>Tosa estética?</div>
@@ -84,8 +78,6 @@
                   type="text"
                   class="name_breed"
                   id="name0"
-                  autocomplete="on"
-                  ,
                   name="breed_input"
                 />
               </div>
@@ -101,7 +93,7 @@
                 cont =
                   cont +
                   `<div><label for="name">Nome</label>
-          <input type="text" name="breed_input" class="name_breed" id="name${new_b.length}" autocomplete="on"></div>`;
+          <input type="text" name="breed_input" class="name_breed" id="name${new_b.length}"></div>`;
                 b_class.innerHTML = cont;
               };
             </script>

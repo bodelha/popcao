@@ -27,7 +27,7 @@ function formSubmit() {
     })
     .then((data) => {
       console.log(data);
-      alert("Cadastrado com sucesso");
+      alert("Cadastro realizado com sucesso");
       window.location.href = "index.html";
     })
     .catch((error) => {

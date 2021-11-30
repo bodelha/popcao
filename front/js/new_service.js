@@ -48,6 +48,6 @@ const form = document.getElementById("registerForm");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   formSubmit();
-  alert(event)
+  alert("Serviço criado com Sucesso!")
   window.location.href = "service_config.html";
 });

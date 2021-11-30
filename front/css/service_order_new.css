@@ -12,7 +12,7 @@ header {
   align-self: center;
   vertical-align: center;
   height: 100vh;
-  width: 80vh;
+  width: 80%;
 }
 #menu {
   float: top;
@@ -51,68 +51,35 @@ header {
   font-family: "Fredoka One", sans-serif;
   color: #293241;
 }
-#mainContend {
-  float: center;
-}
-#register_form {
-  position: relative;
+input {
+    height: 5vh;
+    margin: 2vh 0vw 2vh 0vw;
+    text-align: center;
+    width: 100%;
+  }
+#order {
+  position: absolute;
   float: center;
   background-color: #e0fbfc;
-  font-size: 2vh;
+  font-size: 2.5vh;
   border: 0.05ch solid #330c2f;
   border-radius: 1rem 1rem 1rem 1rem;
-  width: 58vw;
-  margin: 10vh 5vw 0vh 30vw;
+  width: 50vw;
+  margin: 15vh 5vw 0vh 32vw;
   padding: 5vh 2vw 5vh 2vw;
-  align-self: center;
 }
-.form_session {
-  display: inline;
-  width: 93%;
-  justify-content: space-between;
-  vertical-align: middle;
-}
-#tutor,
-.pet_group {
-  display: block;
+.card, #groomable {
+  border: 0.05ch solid #330c2f;
+  background-color: #4c94bd;
+  color: #e0fbfc;
   border-radius: 0.7rem;
   padding: 1rem;
-  margin: 0.5vh 0vw 0.5vh 0vw;
-  border: 0.05ch solid #330c2f;
-  color: #e0fbfc;
-  width: 55vw;
-  background-color: #4c94bd;
+  width: 90%$;
+  align-self: center;
+  margin: 1vh 0.5vw 3vh 0.5vw;
 }
-input {
-  height: 3.5vh;
-  margin: 1vh 0vw 1vh 0vw;
-  text-align: center;
-  width: 100%;
+.trio{
+    display: flex;
 }
-label {
-  width: max-content;
-}
-#sex {
-  display: flex;
-  justify-content: space-between;
-}
-#pair {
-  display: flex;
-}
-#breedSession {
-  vertical-align: middle;
-}
-#breedSession label {
-  vertical-align: middle;
-  padding-top: 3vh;
-}
-#new_pet {
-  height: 5vh;
-  width: 8vw;
-  float: left;
-}
-.submit {
-  float: right;
-  width: 15vw;
-  height: 5vh;
-}
+
+

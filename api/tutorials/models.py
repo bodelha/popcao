@@ -4,7 +4,8 @@ from django.db.models.deletion import CASCADE
 
 # from api.tutorials.views import services
 
-
+class Day(models.Model):
+    hours=models.IntegerField()
 
 class Service(models.Model):
     id_service = models.BigAutoField(primary_key=True, db_column='Id')
@@ -51,10 +52,10 @@ class Pet(models.Model):
     last_update = models.DateTimeField(auto_now=True, db_column='LastUpdate')
 
 class ServiceOrder(models.Model):
-    id_order = models.BigAutoField(primary_key=True, db_column='Id')
+    id_order = models.AutoField(primary_key=True, db_column='Id')
     attendances_set = models.ManyToOneRel(to='Attendance', field_name='id_order', field='service_order')
     tutor_id = models.ForeignKey(to=Tutor, on_delete=models.CASCADE, db_column='TutorId')
-    pet_ids = models.ManyToManyField(to=Pet, through='Attendance')
+    # pet_ids = models.ManyToManyField(to=Pet, through='Attendance')
     creation = models.DateTimeField(auto_now_add=True, db_column='CreationTime')
     last_update = models.DateTimeField(auto_now=True, db_column='LastUpdate')
 

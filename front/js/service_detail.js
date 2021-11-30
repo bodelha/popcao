@@ -125,7 +125,7 @@ function formSubmit() {
       groomable: groomable == 1,
     });
   }
-  parsed_data["set"] = breeds;
+  parsed_data["breeds"] = breeds;
   console.log(parsed_data, breeds);
   updateService(serviceId, parsed_data)
     .then((response) => {
@@ -145,6 +145,6 @@ function formSubmit() {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   formSubmit();
-  alert(event);
+  alert("Serviço atualizado com Sucesso!");
   window.location.href = "service_config.html";
 });
