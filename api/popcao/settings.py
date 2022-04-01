@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z@*6@fqmf6fqciovbp@%9^du-=+c9n!%n@%%@pps)ow#+-47)a'
+SECRET_KEY = 'password'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,10 +90,10 @@ CORS_ORIGIN_WHITELIST = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'popcao',
+        'NAME': 'name',
         'USER': 'popcao',
-        'PASSWORD': 'petpopC@0',
-        'HOST': 'popcao.mysql.uhserver.com',
+        'PASSWORD': ,
+        'HOST': ,
         'PORT': '3306',
     }
 }
